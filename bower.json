@@ -1,5 +1,5 @@
 {
-  "name": "d2l-form-ui",
+  "name": "d2l-forms-ui",
   "description": "Polymer-based web components for a D2L forms",
   "main": [
     "d2l-input.html"
