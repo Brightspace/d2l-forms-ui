@@ -1,0 +1,27 @@
+{
+  "name": "d2l-form-ui",
+  "version": "2.0.0",
+  "description": "D2l form styles",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brightspace/d2l-form-ui.git"
+  },
+  "keywords": [
+    "d2l"
+  ],
+  "author": "D2L Corporation",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Brightspace/d2l-form-ui/issues"
+  },
+  "homepage": "https://github.com/Brightspace/d2l-form-ui",
+  "dependencies": {
+    "bower": "^1.7.7"
+  },
+  "devDependencies": {
+
+  }
+}

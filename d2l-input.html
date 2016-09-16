@@ -1,0 +1,63 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="./d2l-input-shared-styles.html">
+
+<!--
+`d2l-input`
+input styling
+
+@demo demo/index.html
+-->
+
+<dom-module id="d2l-input">
+	<template>
+    <style include="d2l-input-shared-styles">
+		:host {
+			  @apply(--d2l-input);
+			  @apply(--d2l-input-with-text);
+		  }
+
+		  :host::-webkit-search-cancel-button {
+			  @apply(--d2l-input-webkit-search-cancel-button);
+		  }
+
+		  :host::-ms-clear {
+			  @apply(--d2l-input-ms-clear);
+		  }
+
+		  :host:[aria-invalid='true'] {
+			  border-color: var(--d2l-input-aria-invalid-border-color);
+		  }
+
+		  :host:hover:disabled {
+			  @apply(--d2l-input-hover-disabled);
+		  }
+
+		  :host:disabled {
+			  @apply(--d2l-input-disabled);
+		  }
+
+		  :host::placeholder {
+			  color: var(--d2l-input-placeholder-color);
+		  }
+
+		  :host:hover,
+		  :host:focus {
+			  @apply(--d2l-input-hover);
+		  }
+
+    </style>
+    <content></content>
+  </template>
+
+	<script>
+		Polymer({
+
+			is: 'd2l-input',
+			extends: 'input',
+			properties: {
+
+			},
+
+		});
+	</script>
+</dom-module>
