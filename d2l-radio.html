@@ -29,36 +29,24 @@ input styling
 		  background-repeat: no-repeat;
 	  }
 
-	  :host:checked {
+	  :host(:checked) {
 		  background-image: var(--d2l-input-icon-radio);
 	  }
 
-	  :host::-webkit-search-cancel-button {
-		  @apply(--d2l-input-webkit-search-cancel-button);
+	  :host(:[aria-invalid='true']) {
+		  @apply(--d2l-input-aria-invalid);
 	  }
 
-	  :host::-ms-clear {
-		  @apply(--d2l-input-ms-clear);
-	  }
-
-	  :host:[aria-invalid='true'] {
-		  border-color: var(--d2l-input-aria-invalid-border-color);
-	  }
-
-	  :host:hover:disabled {
+	  :host(:hover:disabled) {
 		  @apply(--d2l-input-hover-disabled);
 	  }
 
-	  :host:disabled {
+	  :host(:disabled) {
 		  @apply(--d2l-input-disabled);
 	  }
 
-	  :host::placeholder {
-		  color: var(--d2l-input-placeholder-color);
-	  }
-
-	  :host:hover,
-	  :host:focus {
+	  :host(:hover),
+	  :host(:focus) {
 		  @apply(--d2l-input-hover);
 	  }
 
@@ -69,7 +57,7 @@ input styling
 			  appearance: radio;
 		  }
 
-		  :host:focus {
+		  :host(:focus) {
 			  @apply(--d2l-input-legacy-outline);
 		  }
 
@@ -77,20 +65,18 @@ input styling
 
 	  /* IE (not Edge) only */
 	  @media screen and (min-width:0\0) {
-		  :host:focus {
+		  :host(:focus) {
 			  @apply(--d2l-input-legacy-outline);
 		  }
 	  }
 
     </style>
-    <content></content>
   </template>
 
   <script>
     Polymer({
 	is: 'd2l-radio',
-	extends: 'input',
-	properties: {}
+	extends: 'input'
     });
   </script>
 </dom-module>
