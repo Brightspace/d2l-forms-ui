@@ -1,0 +1,34 @@
+{
+  "name": "d2l-forms-ui",
+  "description": "D2l form styles",
+  "private":"true",
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "npm run test:lint:js && npm run test:lint:wc",
+    "test:lint:js": "eslint *.html",
+    "test:lint:wc": "polylint --input *.html",
+    "test:unit:local": "wct --skip-plugin sauce"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brightspace/d2l-form-ui.git"
+  },
+  "keywords": [
+    "d2l"
+  ],
+  "author": "D2L Corporation",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Brightspace/d2l-form-ui/issues"
+  },
+  "homepage": "https://github.com/Brightspace/d2l-form-ui",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "eslint": "^2.10.2",
+    "eslint-config-brightspace": "^0.2.1",
+    "eslint-plugin-html": "^1.4.0",
+    "polylint": "^2.10.0",
+    "web-component-tester": "^4.2.2"
+  }
+}
