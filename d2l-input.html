@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="./d2l-input-shared-styles.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../paper-input/paper-input-behavior.html">
 
 <!--
 `d2l-input`
@@ -11,39 +13,83 @@ input styling
 <dom-module id="d2l-input">
 	<template>
     <style include="d2l-input-shared-styles">
-		:host {
-			  @apply(--d2l-input);
-			  @apply(--d2l-input-with-text);
-		  }
+		:host > input {
+			@apply(--d2l-input);
+			@apply(--d2l-input-with-text);
+		}
 
-		  :host(:[aria-invalid='true']) {
-			  @apply(--d2l-input-aria-invalid);
-		  }
+		:host > input:[aria-invalid='true'] {
+			@apply(--d2l-input-aria-invalid);
+		}
 
-		  :host(:hover:disabled) {
-			  @apply(--d2l-input-hover-disabled);
-		  }
+	  	:host > input:hover:disabled {
+			@apply(--d2l-input-hover-disabled);
+		}
 
-		  :host(:disabled) {
-			  @apply(--d2l-input-disabled);
-		  }
+		:host > input:disabled {
+			@apply(--d2l-input-disabled);
+		}
 
-		  :host(::placeholder) {
-			  color: var(--d2l-input-placeholder-color);
-		  }
+		:host > input::placeholder {
+			color: var(--d2l-input-placeholder-color);
+		}
 
-		  :host(:hover),
-		  :host(:focus) {
-			  @apply(--d2l-input-hover);
-		  }
+		:host > input:hover,
+		:host > input:focus {
+			@apply(--d2l-input-hover);
+		}
 
     </style>
+
+	<content select="[prefix]"></content>
+
+	<label hidden$="[[!label]]" aria-hidden="true" for="input">[[label]]</label>
+
+	<input is="iron-input" id="input"
+        aria-labelledby$="[[_ariaLabelledBy]]"
+        aria-describedby$="[[_ariaDescribedBy]]"
+        disabled$="[[disabled]]"
+        title$="[[title]]"
+        bind-value="{{value}}"
+        invalid="{{invalid}}"
+        prevent-invalid-input="[[preventInvalidInput]]"
+        allowed-pattern="[[allowedPattern]]"
+        validator="[[validator]]"
+        type$="[[type]]"
+        pattern$="[[pattern]]"
+        required$="[[required]]"
+        autocomplete$="[[autocomplete]]"
+        autofocus$="[[autofocus]]"
+        inputmode$="[[inputmode]]"
+        minlength$="[[minlength]]"
+        maxlength$="[[maxlength]]"
+        min$="[[min]]"
+        max$="[[max]]"
+        step$="[[step]]"
+        name$="[[name]]"
+        placeholder$="[[placeholder]]"
+        readonly$="[[readonly]]"
+        list$="[[list]]"
+        size$="[[size]]"
+        autocapitalize$="[[autocapitalize]]"
+        autocorrect$="[[autocorrect]]"
+        on-change="_onChange"
+        tabindex$="[[tabindex]]"
+        autosave$="[[autosave]]"
+        results$="[[results]]"
+        accept$="[[accept]]"
+        multiple$="[[multiple]]">
+
+	<content select="[suffix]"></content>
+
   </template>
 
 	<script>
 		Polymer({
 			is: 'd2l-input',
-			extends: 'input'
+			Behaviors: [
+				Polymer.PaperInputBehavior
+			]
 		});
 	</script>
 </dom-module>
