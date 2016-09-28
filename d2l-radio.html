@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="./d2l-input-shared-styles.html">
 <link rel="import" href="./d2l-input-icons.html">
+<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 
 <!--
 `d2l-radio`
@@ -12,7 +13,7 @@ input styling
 <dom-module id="d2l-radio">
   <template>
     <style include="d2l-input-icons d2l-input-shared-styles">
-      :host {
+	  :host {
 		  --d2l-input-background-color: var(--d2l-checkradio-background-color);
 		  --d2l-input-background-color-hover: var(--d2l-checkradio-background-color-hover);
 		  --d2l-input-box-shadow: none;
@@ -21,7 +22,9 @@ input styling
 		  --d2l-input-padding-focus: 0;
 		  --d2l-input-width: 1.2rem;
 		  --d2l-input-border-radius: 0.55rem;
+	  }
 
+      :host > #radio {
 		  @apply(--d2l-input);
 		  @apply(--d2l-input-appearance-none);
 
@@ -33,31 +36,31 @@ input styling
 		  background-image: var(--d2l-input-icon-radio);
 	  }
 
-	  :host(:[aria-invalid='true']) {
+	  :host > input:[aria-invalid='true'] {
 		  @apply(--d2l-input-aria-invalid);
 	  }
 
-	  :host(:hover:disabled) {
+	  :host > input:hover:disabled {
 		  @apply(--d2l-input-hover-disabled);
 	  }
 
-	  :host(:disabled) {
+	  :host > input:disabled {
 		  @apply(--d2l-input-disabled);
 	  }
 
-	  :host(:hover),
-	  :host(:focus) {
+	  :host > input:hover,
+	  :host > input:focus {
 		  @apply(--d2l-input-hover);
 	  }
 
 	  /* Firefox only
 	  https://bugzilla.mozilla.org/show_bug.cgi?id=605985 */
 	  @-moz-document url-prefix() {
-		  :host {
+		  :host > input {
 			  appearance: radio;
 		  }
 
-		  :host(:focus) {
+		  :host > input:focus {
 			  @apply(--d2l-input-legacy-outline);
 		  }
 
@@ -65,18 +68,46 @@ input styling
 
 	  /* IE (not Edge) only */
 	  @media screen and (min-width:0\0) {
-		  :host(:focus) {
+		  :host > input:focus {
 			  @apply(--d2l-input-legacy-outline);
 		  }
 	  }
 
     </style>
+
+	<div id="radio">
+
+	</div>
   </template>
 
   <script>
     Polymer({
-	is: 'd2l-radio',
-	extends: 'input'
+		is: 'd2l-radio',
+		behaviors: [
+        	Polymer.IronCheckedElementBehavior
+      	],
+		hostAttributes: {
+        role: 'radio',
+        'aria-checked': false,
+        tabindex: 0
+      },
+      properties: {
+        /**
+         * Fired when the checked state changes due to user interaction.
+         *
+         * @event change
+         */
+        /**
+         * Fired when the checked state changes.
+         *
+         * @event iron-change
+         */
+        ariaActiveAttribute: {
+          type: String,
+          value: 'aria-checked'
+        }
+      },
+
     });
   </script>
 </dom-module>

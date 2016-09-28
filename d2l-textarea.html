@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="./d2l-input-shared-styles.html">
+<link rel="import" href="../iron-autogrow-textarea/iron-autogrow-textarea.html">
+<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 
 <!--
 `d2l-textarea`
@@ -11,10 +13,13 @@ input styling
 <dom-module id="d2l-textarea">
   <template>
     <style include="d2l-input-shared-styles">
-      :host {
+	  :host {
 		  --d2l-input-line-height: normal;
 		  --d2l-input-padding: 0.5rem 1rem;
 		  --d2l-input-padding-focus: calc(0.5rem - 1px) calc(1rem - 1px);
+	  }
+
+      :host > .d2l-input-input {
 
 		  @apply(--d2l-input);
 		  @apply(--d2l-input-with-text);
@@ -22,34 +27,55 @@ input styling
 		  overflow: auto;
 	  }
 
-	  :host(:[aria-invalid='true']) {
+	  :host > .d2l-input-input:[aria-invalid='true'] {
 		  @apply(--d2l-input-aria-invalid);
 	  }
 
-	  :host(:hover:disabled) {
+	  :host > .d2l-input-input:hover:disabled {
 		  @apply(--d2l-input-hover-disabled);
 	  }
 
-	  :host(:disabled) {
+	  :host > .d2l-input-input:disabled {
 		  @apply(--d2l-input-disabled);
 	  }
 
-	  :host(::placeholder) {
+	  :host > .d2l-input-input::placeholder {
 		  color: var(--d2l-input-placeholder-color);
 	  }
 
-	  :host(:hover),
-	  :host(:focus) {
+	  :host > .d2l-input-input:hover,
+	  :host > .d2l-input-input:focus {
 		  @apply(--d2l-input-hover);
 	  }
 
     </style>
+
+	<iron-autogrow-textarea id="input" class="d2l-input-input"
+        bind-value="{{value}}"
+        invalid="{{invalid}}"
+        disabled$="[[disabled]]"
+        autocomplete$="[[autocomplete]]"
+        autofocus$="[[autofocus]]"
+        inputmode$="[[inputmode]]"
+        name$="[[name]]"
+        placeholder$="[[placeholder]]"
+        readonly$="[[readonly]]"
+        required$="[[required]]"
+        minlength$="[[minlength]]"
+        maxlength$="[[maxlength]]"
+        autocapitalize$="[[autocapitalize]]"
+        rows$="[[rows]]"
+        max-rows$="[[maxRows]]"
+        on-change="_onChange"></iron-autogrow-textarea>
+
   </template>
 
   <script>
     Polymer({
-	is: 'd2l-textarea',
-	extends: 'textarea'
+		is: 'd2l-textarea',
+		Behaviors: [
+			Polymer.PaperInputBehavior
+		]
     });
   </script>
 </dom-module>
