@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="./d2l-input-shared-styles.html">
 <link rel="import" href="./d2l-input-icons.html">
+<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 
 <!--
 `d2l-checkbox`
@@ -12,15 +13,17 @@ input styling
 <dom-module id="d2l-checkbox">
   <template>
     <style include="d2l-input-icons d2l-input-shared-styles">
-      :host {
+	  :host {
 		  --d2l-input-background-color: var(--d2l-checkradio-background-color);
-		  --d2l-input-background-color-hover: var(--d2l-checkradio-background-color-hover);
-		  --d2l-input-box-shadow: none;
-		  --d2l-input-height: 1.2rem;
-		  --d2l-input-padding: 0;
-		  --d2l-input-padding-focus: 0;
-		  --d2l-input-width: 1.2rem;
-		  --d2l-input-border-radius: 0.3rem;
+		 --d2l-input-background-color-hover: var(--d2l-checkradio-background-color-hover);
+		 --d2l-input-box-shadow: none;
+		 --d2l-input-height: 1.2rem;
+		 --d2l-input-padding: 0;
+		 --d2l-input-padding-focus: 0;
+		 --d2l-input-width: 1.2rem;
+		 --d2l-input-border-radius: 0.3rem;
+	  }
+      :host > input {
 
 		  @apply(--d2l-input);
 		  @apply(--d2l-input-appearance-none);
@@ -29,35 +32,35 @@ input styling
 		  background-repeat: no-repeat;
 	  }
 
-	  :host(:checked) {
+	  :host > input:checked {
 		  background-image: var(--d2l-input-icon-checkbox);
 	  }
 
-	  :host(:[aria-invalid='true']) {
+	  :host > input:[aria-invalid='true'] {
 		  @apply(--d2l-input-aria-invalid);
 	  }
 
-	  :host(:hover:disabled) {
+	  :host > input:hover:disabled {
 		  @apply(--d2l-input-hover-disabled);
 	  }
 
-	  :host(:disabled) {
+	  :host > input:disabled {
 		  @apply(--d2l-input-disabled);
 	  }
 
-	  :host(:hover),
-	  :host(:focus) {
+	  :host > input:hover,
+	  :host > input:focus {
 		  @apply(--d2l-input-hover);
 	  }
 
 	  /* Firefox only
 	  https://bugzilla.mozilla.org/show_bug.cgi?id=605985 */
 	  @-moz-document url-prefix() {
-		  :host {
+		  :host > input {
 			  appearance: checkbox;
 		  }
 
-		  :host(:focus) {
+		  :host > input:focus {
 			  @apply(--d2l-input-legacy-outline);
 		  }
 
@@ -65,18 +68,29 @@ input styling
 
 	  /* IE (not Edge) only */
 	  @media screen and (min-width:0\0) {
-		  :host(:focus) {
+		  :host > input:focus {
 			  @apply(--d2l-input-legacy-outline);
 		  }
 	  }
 
     </style>
+
+	<input
+		type="checkbox"
+		id="checkbox"
+		checked$="[[checked]]"
+		required$="[[required]]"
+		name$="[[name]]"
+		>
+
   </template>
 
   <script>
-    Polymer({
-	is: 'd2l-checkbox',
-	extends: 'input'
+  	Polymer({
+		is: 'd2l-checkbox',
+		behaviors: [
+        	Polymer.IronCheckedElementBehavior
+      	]
     });
   </script>
 </dom-module>
