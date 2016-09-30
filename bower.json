@@ -5,20 +5,20 @@
     "d2l-inputs.html"
   ],
   "license": "Apache-2.0",
- "ignore": [
-   "test",
-   ".editorconfig",
-   ".gitignore",
-   ".travis.yml",
-   "package.json"
- ],
- "dependencies": {
-   "d2l-colors": "^2.1.0",
-   "polymer": "^1.5.0"
- },
- "devDependencies": {
-   "d2l-demo-template": "https://github.com/dbatiste/d2l-demo-template-ui.git#master",
-   "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.1.5",
-   "web-component-tester": "^4.2.2"
- }
+  "ignore": [
+    "test",
+    ".editorconfig",
+    ".gitignore",
+    ".travis.yml",
+    "package.json"
+  ],
+  "dependencies": {
+    "d2l-colors": "^2.1.0",
+    "polymer": "^1.5.0"
+  },
+  "devDependencies": {
+    "d2l-demo-template": "^0.0.2",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.1.5",
+    "web-component-tester": "^4.2.2"
+  }
 }
