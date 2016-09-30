@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="./d2l-input-shared-styles.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="d2l-input-shared-styles.html">
 
 <!--
 `d2l-input`
@@ -11,39 +12,298 @@ input styling
 <dom-module id="d2l-input">
 	<template>
     <style include="d2l-input-shared-styles">
-		:host {
+		:host > input {
 			  @apply(--d2l-input);
 			  @apply(--d2l-input-with-text);
 		  }
 
-		  :host(:[aria-invalid='true']) {
+		  :host > input[aria-invalid='true'] {
 			  @apply(--d2l-input-aria-invalid);
 		  }
 
-		  :host(:hover:disabled) {
+		  :host > input:hover:disabled {
 			  @apply(--d2l-input-hover-disabled);
 		  }
 
-		  :host(:disabled) {
+		  :host > input:disabled {
 			  @apply(--d2l-input-disabled);
 		  }
 
-		  :host(::placeholder) {
+		  :host > input::placeholder {
 			  color: var(--d2l-input-placeholder-color);
 		  }
 
-		  :host(:hover),
-		  :host(:focus) {
+		  :host > input:hover,
+		  :host > input:focus {
 			  @apply(--d2l-input-hover);
 		  }
 
     </style>
+
+	<input
+		autocapitalize$="[[autocapitalize]]"
+		autocomplete$="[[autocomplete]]"
+		autocorrect$="[[autocorrect]]"
+		autofocus$="[[autofocus]]"
+		bind-value="{{value}}"
+		disabled$="[[disabled]]"
+		id$="[[id]]"
+		is="iron-input"
+		list$="[[list]]"
+		name$="[[name]]"
+		maxlength$="[[maxlength]]"
+        min$="[[min]]"
+        max$="[[max]]"
+		minlength$="[[minlength]]"
+		pattern$="[[pattern]]"
+		placeholder$="[[placeholder]]"
+		readonly$="[[readonly]]"
+		required$="[[required]]"
+		results$="[[results]]"
+		size$="[[size]]"
+		step$="[[step]]"
+		type$="[[type]]"
+		>
+
   </template>
 
 	<script>
 		Polymer({
+
 			is: 'd2l-input',
-			extends: 'input'
+
+			properties: {
+
+				/**
+				 * This is a nonstandard attribute used by Chrome and iOS
+				 * Safari Mobile, which controls whether and how the text
+				 * value should be automatically capitalized as it is
+				 * entered/edited by the user.
+				 * @type String
+				 * @default 'none'
+				 */
+				autocapitalize: {
+					type: String,
+					value: 'none'
+				},
+
+				/**
+				 * This attribute indicates whether the value of the control
+				 * can be automatically completed by the browser.
+				 * @type String
+				 * @default 'off'
+				 */
+				autocomplete: {
+					type: String,
+					value: 'off'
+				},
+
+				/**
+				 * This is a nonstandard attribute supported by Safari that is
+				 * used to control whether autocorrection should be enabled
+				 * when the user is entering/editing the text value of the
+				 * <input>.
+				 * @type String
+				 * @default 'off'
+				 */
+				autocorrect: {
+					type: String,
+					value: 'off'
+				},
+
+				/**
+				 * This Boolean attribute lets you specify that a form control
+				 * should have input focus when the page loads, unless the user
+				 * overrides it, for example by typing in a different control.
+				 * Only one form element in a document can have the autofocus
+				 * attribute, which is a Boolean. It cannot be applied if the
+				 * type attribute is set to hidden (that is, you cannot
+				 * automatically set focus to a hidden control).
+				 * @type Boolean
+				 */
+				autofocus: {
+					type: Boolean
+				},
+
+				/**
+				 * Set to true to disable the input.
+				 * @type Boolean
+				 * @default false
+				 */
+				disabled: {
+					type: Boolean,
+					value: false
+				},
+
+				/**
+				 * Unique for this ID
+				 * @type String
+				 */
+				id: {
+					type: String
+				},
+
+				/**
+				 * A hint to the browser for which keyboard to display.
+				 * @type String
+				 */
+				inputmode: {
+					type: String
+				},
+
+				/**
+				 * The datalist of the input (if any). This should match the
+				 * id of an existing `<datalist>`.
+				 * @type String
+				 */
+				list: {
+					type: String
+				},
+
+				/**
+				 * The maximum length of the input value.
+				 * @type Number
+				 */
+				maxlength: {
+					type: Number
+				},
+
+				/**
+				 * The maximum (numeric or date-time) value for this item,
+				 * which must not be less than its minimum (min attribute)
+				 * value.
+				 * @type String
+				 */
+				max: {
+					type: String
+				},
+
+				/**
+				 * The minimum (numeric or date-time) value for this item,
+				 * which must not be greater than its maximum (max attribute)
+				 * value.
+				 * @type String
+				 */
+				min: {
+					type: String
+				},
+
+				/**
+				 * The minimum length of the input value.
+				 * @type Number
+				 */
+				minlength: {
+					type: Number
+				},
+
+				/**
+				 * This Boolean attribute indicates whether the user can enter
+				 * more than one value. This attribute applies when the type
+				 * attribute is set to email or file; otherwise it is ignored.
+				 * @type Boolean
+				 */
+				multiple: {
+					type: Boolean
+				},
+
+				/**
+				 * The name of the control, which is submitted with the
+				 * form data.
+				 * @type String
+				 */
+				name: {
+					type: String
+				},
+
+				/**
+				 * A pattern to validate the `input` with.
+				 * @type String
+				 */
+				pattern: {
+					type: String
+				},
+
+				/**
+				 * A hint to the user of what can be entered in the control.
+				 * The placeholder text must not contain carriage returns or
+				 * line-feeds.
+				 * @type String
+				 */
+				placeholder: {
+					type: String
+				},
+
+				/**
+				 * This attribute indicates that the user cannot modify
+				 * the value of the control.
+				 * @type Boolean
+				 */
+				readonly: {
+					type: Boolean,
+					value: false
+				},
+
+				/**
+				 * Set to true to mark the input as required.
+				 * @type Boolean
+				 * @default false
+				 */
+				required: {
+					type: Boolean,
+					value: false
+				},
+
+				/**
+				 * This is a nonstandard attribute supported by Safari that
+				 * only applies when the type is search.
+				 * @type Number
+				 */
+				results: {
+					type: Number
+				},
+
+				/**
+				 * The initial size of the control. This value is in pixels
+				 *  unless the value of the type attribute is text or password,
+				 * in which case, it is an integer number of characters.
+				 * @type Number
+				 */
+				size: {
+					type: Number
+				},
+
+				/**
+				 * Works with the min and max attributes to limit the
+				 * increments at which a numeric or date-time value can be
+				 * set. It can be the string any or a positive floating point
+				 * number. If this attribute is not set to any, the control
+				 * accepts only values at multiples of the step value greater
+				 * than the minimum.
+				 * @type String
+				 */
+				step: {
+					type: String
+				},
+
+				/**
+				 * The type of the input.
+				 * @type String
+				 */
+				type: {
+					type: String
+				},
+
+				/**
+				 * The value for this input.
+				 * @type String
+				 */
+				value: {
+					type: String,
+					notify: true
+				}
+
+			}
+
 		});
 	</script>
 </dom-module>
